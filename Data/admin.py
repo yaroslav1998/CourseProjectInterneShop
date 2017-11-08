@@ -1,0 +1,17 @@
+from django.contrib import admin
+from Data.models import *
+admin.site.register(Article)
+admin.site.register(Category)
+admin.site.register(CategoryParameter)
+admin.site.register(Manufacturer)
+admin.site.register(Order)
+admin.site.register(OrderItem)
+admin.site.register(Product)
+admin.site.register(ProductArticle)
+admin.site.register(ProductParameterValue)
+admin.site.register(ProductRate)
+admin.site.register(ProductReview)
+admin.site.register(ProductSale)
+admin.site.register(Stock)
+admin.site.register(ProductStockBalance)
+admin.site.register(User)
