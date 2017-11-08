@@ -8,7 +8,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from datetime import datetime
 
 class Article(models.Model):
     name = models.CharField(max_length=1024)
@@ -184,7 +184,12 @@ class User(models.Model):
     name = models.CharField(max_length=1024)
     phone = models.CharField(max_length=1024)
     adress = models.CharField(max_length=1024)
-
+    reg_date=datetime.now()#автоматически записывает дату регистрации
+    def __str__(self):
+        try:
+            return "e-mail: %s Adress: %s"% (self.email, self.adress)
+        except:
+            return self.id
     class Meta:
         managed = False
         db_table = 'user'
