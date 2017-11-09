@@ -19,4 +19,5 @@ from . import views
 
 urlpatterns = [
     url(r'^Homepage/',views.landing, name='landing'),
+
 ]
