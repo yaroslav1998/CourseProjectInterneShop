@@ -1,8 +1,16 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from landing.models import *
-from orders.models import *
+
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=1024)
+    description = models.TextField()
+    class Meta:
+        managed = False
+        db_table = 'manufacturer'
+    def __str__(self):
+        return "%s" % self.name
+
 class Product(models.Model):
     name = models.CharField(max_length=1024)
     meta_title = models.CharField(max_length=1024)
@@ -10,13 +18,10 @@ class Product(models.Model):
     meta_description = models.TextField()
     meta_keywords = models.CharField(max_length=1024)
     description = models.TextField()
-    description_full = models.TextField()
-    link = models.CharField(max_length=1024)
     enabled = models.IntegerField()
     price = models.DecimalField(max_digits=65, decimal_places=2)
-    views = models.IntegerField()
-    article = models.CharField(max_length=1024)
-    manufacturer = models.ForeignKey('manufacturer', models.DO_NOTHING)
+    manufacturer=models.ForeignKey(Manufacturer,models.DO_NOTHING,db_column='manufacturer')
+    category=models.ForeignKey('category.Category',models.DO_NOTHING,db_column='cid')
     class Meta:
         managed = False
         db_table = 'product'
@@ -26,9 +31,11 @@ class Product(models.Model):
 class ProductImage(models.Model):
     product=models.ForeignKey(Product,models.DO_NOTHING)
     image=models.ImageField(upload_to="media/products_image/")
+    def __str__(self):
+        return "%s" % self.image
 
 class ProductRate(models.Model):
-    id = models.ForeignKey(Product, models.DO_NOTHING, db_column='id', primary_key=True)
+    id = models.OneToOneField(Product, models.DO_NOTHING, db_column='id', primary_key=True)
     rate = models.IntegerField()
     uid = models.ForeignKey('landing.User', models.DO_NOTHING, db_column='uid')
     class Meta:
@@ -61,11 +68,3 @@ class ProductSale(models.Model):
     def __str__(self):
         return "%s %s" % (self.pid.name,self.sale_coef)
 
-class Manufacturer(models.Model):
-    name = models.CharField(max_length=1024)
-    description = models.TextField()
-    class Meta:
-        managed = False
-        db_table = 'manufacturer'
-    def __str__(self):
-        return "%s" % self.name

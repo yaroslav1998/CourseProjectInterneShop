@@ -8,7 +8,6 @@ class Category(models.Model):
     meta_description = models.TextField()
     meta_keywords = models.CharField(max_length=1024)
     content = models.TextField()
-    pid = models.ForeignKey('product.Product', models.DO_NOTHING, db_column='pid')
     class Meta:
         managed = False
         db_table = 'category'
