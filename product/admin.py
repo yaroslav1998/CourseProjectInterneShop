@@ -17,7 +17,6 @@ class ProductInline(admin.TabularInline):
     model = Product
     extra=0
 class ProductAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Product._meta.fields]
     inlines = [ProductImageInline,ProductReviewInline,ProductRateInline]
     class Meta:
         model=Product
