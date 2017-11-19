@@ -17,11 +17,13 @@ class Product(models.Model):
     meta_h1 = models.CharField(max_length=1024)
     meta_description = models.TextField()
     meta_keywords = models.CharField(max_length=1024)
+    short_description = models.TextField()
     description = models.TextField()
     enabled = models.BooleanField()
     price = models.DecimalField(max_digits=65, decimal_places=2,default=0)
     manufacturer=models.ForeignKey(Manufacturer,models.DO_NOTHING,db_column='manufacturer')
     category=models.ForeignKey('category.Category',models.DO_NOTHING,db_column='cid')
+    is_active=models.BooleanField(db_column='is_active')
     class Meta:
         managed = False
         db_table = 'product'

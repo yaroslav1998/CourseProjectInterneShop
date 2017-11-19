@@ -12,9 +12,11 @@ class Order(models.Model):
     uid = models.ForeignKey("landing.User", models.DO_NOTHING, db_column='uid')
     full_price=models.DecimalField(max_digits=65,decimal_places=2,default=0)
     is_active=models.BooleanField()
+
     class Meta:
         managed = False
         db_table = 'order'
+
     def __str__(self):
         return "%s" % (self.id)
 
