@@ -33,6 +33,7 @@ class Product(models.Model):
 class ProductImage(models.Model):
     product=models.ForeignKey(Product,models.DO_NOTHING)
     image=models.ImageField(upload_to="media/products_image/")
+    is_active=models.BooleanField(default=True)
     def __str__(self):
         return "%s" % self.image
 
