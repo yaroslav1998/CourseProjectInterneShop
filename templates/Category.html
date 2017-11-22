@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{{ category.name }}
+<div class="section">
+        <div class="container">
+            <div class="row">
+                {% for produc in product  %}
+                     <div class="col-lg-3">
+                        <div class="product-item">
+                                    <div>
+                                        <a href="{%url 'product' produc.id  %}">
+                                        </a>
+                                    </div>
+                                    <div>
+                                        {{ produc.price }} USD
+                                    </div>
+                                    <div class="add-to-cart-btn">
+                                        <button class="btn btn-success">
+                                            Добавить в корзину
+                                        </button>
+                                    </div>
+                        </div>
+                     </div>
+                {% endfor %}
+            </div>
+        </div>
+     </div>
+{% endblock %}
