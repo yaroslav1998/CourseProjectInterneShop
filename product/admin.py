@@ -10,9 +10,7 @@ class ProductReviewInline(admin.TabularInline):
 class ProductRateInline(admin.TabularInline):
     model = ProductRate
     extra=0
-class ProductSaleInline(admin.TabularInline):
-    model = ProductSale
-    extra=0
+
 class ProductInline(admin.TabularInline):
     model = Product
     extra=0
@@ -44,13 +42,6 @@ class ProductReviewAdmin(admin.ModelAdmin):
         model=ProductReview
 
 admin.site.register(ProductReview,ProductReviewAdmin)
-
-class ProductSaleAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in ProductSale._meta.fields]
-    class Meta:
-        model=ProductSale
-
-admin.site.register(ProductSale,ProductSaleAdmin)
 
 class ProductImageAdmin(admin.ModelAdmin):
     list_display = [field.name for field in ProductImage._meta.fields]

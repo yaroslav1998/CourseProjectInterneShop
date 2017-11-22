@@ -32,7 +32,8 @@ class Product(models.Model):
 
 class ProductImage(models.Model):
     product=models.ForeignKey(Product,models.DO_NOTHING)
-    image=models.ImageField(upload_to="media/products_image/")
+    image=models.ImageField(upload_to="media/products_image")
+    is_main=models.BooleanField(default=False)
     is_active=models.BooleanField(default=True)
     def __str__(self):
         return "%s" % self.image
@@ -59,13 +60,5 @@ class ProductReview(models.Model):
     def __str__(self):
         return "%s %s" % (self.uid.name,self.comment)
 
-class ProductSale(models.Model):
-    pid = models.ForeignKey(Product, models.DO_NOTHING, db_column='pid')
-    price_old = models.DecimalField(max_digits=65, decimal_places=2)
-    sale_coef=models.IntegerField()
-    class Meta:
-        managed = False
-        db_table = 'product_sale'
-    def __str__(self):
-        return "%s %s" % (self.pid.name,self.sale_coef)
+
 

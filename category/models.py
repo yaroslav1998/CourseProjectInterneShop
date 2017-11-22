@@ -8,7 +8,6 @@ class Category(models.Model):
     meta_description = models.TextField()
     meta_keywords = models.CharField(max_length=1024)
     content = models.TextField()
-    Image = models.ImageField(upload_to="media/category_image/")
     class Meta:
         managed = False
         db_table = 'category'
