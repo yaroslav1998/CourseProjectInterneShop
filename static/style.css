@@ -38,3 +38,17 @@
     clear: both;
     background-color: white;
 }
+.basket-container{
+    position:relative;
+    width: 75px;
+    top: 13px;
+    background-color: #e7e7e7;
+    color:black;
+}
+.basket-items{
+    position:absolute;
+    top:37px;
+    width: 300px;
+    padding:10px;
+    background-color: #d6d6d6;
+}

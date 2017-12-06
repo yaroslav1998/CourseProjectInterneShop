@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block tittle%}
+    {{ category.meta_title }}
+{% endblock %}
 {% block content %}
 {{ category.name }}
 <div class="section">
@@ -9,8 +11,16 @@
                 {% for produc in product  %}
                      <div class="col-lg-3">
                         <div class="product-item">
+
                                     <div>
                                         <a href="{%url 'product' produc.id  %}">
+                                             {% for image_item in produc.productimage_set.all %}
+                                                 {% if image_item.is_main%}
+                                                     <div class="product-image-item">
+                                                     <img src="{{ image_item.image.url }}" class="img-responsive">
+                                                     </div>
+                                                 {% endif %}
+                                             {% endfor %}
                                         </a>
                                     </div>
                                     <div>
