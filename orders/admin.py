@@ -20,3 +20,4 @@ class StatusAdmin(admin.ModelAdmin):
 admin.site.register(Order,OrderAdmin)
 admin.site.register(OrderItem,OrderItemAdmin)
 admin.site.register(Status,StatusAdmin)
+admin.site.register(ProductInBasket)

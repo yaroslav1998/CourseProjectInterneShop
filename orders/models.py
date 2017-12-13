@@ -58,3 +58,24 @@ class Status(models.Model):
         db_table = 'Status'
     def __str__(self):
         return "%s" % self.name
+
+class ProductInBasket(models.Model):
+    session_key=models.CharField(max_length=128,db_column="session_key")
+    order = models.ForeignKey(Order, models.DO_NOTHING, db_column='oid')
+    product_id = models.ForeignKey("product.Product", models.DO_NOTHING, db_column='pid')
+    price_per_item=models.DecimalField(max_digits=65,decimal_places=2,default=0)
+    count = models.IntegerField(default=1)
+    Full_price=models.DecimalField(max_digits=65,decimal_places=2,default=0)
+    is_active_basket=models.BooleanField(db_column="is_active")
+    class Meta:
+        managed = False
+        db_table = 'productinbasket'
+
+    def __str__(self):
+        return "%s %s" % (self.order,self.product_id.name)
+
+    def save(self,*args,**kwargs):
+        self.price_per_item=self.product_id.price
+        self.Full_price = self.count*self.price_per_item
+        super(ProductInBasket, self).save(*args, **kwargs)
+

@@ -22,7 +22,8 @@ urlpatterns = [
     url(r'^',include('landing.urls')),
     url(r'^home/',include('landing.urls')),
     url(r'^product/',include('product.urls')),
-    url(r'^category/',include('category.urls'))
+    url(r'^category/',include('category.urls')),
+    url(r'^basket_adding/',include('orders.urls'))
 ]\
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
