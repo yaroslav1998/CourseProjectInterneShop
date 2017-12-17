@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from orders.models import *
 
 class Manufacturer(models.Model):
     name = models.CharField(max_length=1024)

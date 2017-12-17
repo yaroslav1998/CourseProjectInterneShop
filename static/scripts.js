@@ -26,10 +26,11 @@ $(document).ready(function () {
              cache: true,
              success: function (data) {
                  console.log("OK");
+                 console.log(data.products_total_nmb)
                 // console.log(data.products_total_nmb);
-                // if (data.products_total_nmb ){
+                 if (data.products_total_nmb ){
                      //|| data.products_total_nmb == 0){
-                 //   $('#basket_total_nmb').text("("+data.products_total_nmb+")");
+                   $('#basket_total_nmb').text("("+data.products_total_nmb+")");}
                    // console.log(data.products);
                    //  $('.basket-items ul').html("");
                    //  $.each(data.products, function(k, v){

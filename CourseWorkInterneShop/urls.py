@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^',include('landing.urls')),
     url(r'^',include('product.urls')),
     url(r'^',include('category.urls')),
-    url(r'^orders:basket_adding',include('orders.urls'))
+    url(r'^',include('orders.urls'))
 ]\
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
