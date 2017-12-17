@@ -18,7 +18,7 @@ $(document).ready(function () {
         data["csrfmiddlewaretoken"] = csrf_token;
 
         var url = form.attr("action");
-        console.log(data)
+        console.log(data);
          $.ajax({
              url: url,
              type: 'POST',
@@ -26,19 +26,21 @@ $(document).ready(function () {
              cache: true,
              success: function (data) {
                  console.log("OK");
-                 console.log(data.products_total_nmb);
-                 if (data.products_total_nmb || data.products_total_nmb == 0){
-                    $('#basket_total_nmb').text("("+data.products_total_nmb+")");
-                     console.log(data.products);
-                     $('.basket-items ul').html("");
-                     $.each(data.products, function(k, v){
-                        $('.basket-items ul').append('<li>'+ v.name+', ' + v.nmb + ' pieces ' + v.price + 'usd ' +
-                            '<a class="delete-item" href="" data-product_id="'+v.id+'">x</a>'+
-                            '</li>');
-                     });
+                // console.log(data.products_total_nmb);
+                // if (data.products_total_nmb ){
+                     //|| data.products_total_nmb == 0){
+                 //   $('#basket_total_nmb').text("("+data.products_total_nmb+")");
+                   // console.log(data.products);
+                   //  $('.basket-items ul').html("");
+                   //  $.each(data.products, function(k, v){
+                     //   $('.basket-items ul').append('<li>'+ v.name+', ' + v.nmb + ' pieces ' + v.price + 'usd ' +
+                          //  '<a class="delete-item" href="" data-product_id="'+v.id+'">x</a>'+
+                     //       '</li>');
+                   //  });
                  }
 
-             },
+            // }
+             ,
              error: function(){
                  console.log("error")
              }
