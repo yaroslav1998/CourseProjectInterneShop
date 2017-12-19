@@ -4,7 +4,9 @@
     {{ category.meta_title }}
 {% endblock %}
 {% block content %}
-{{ category.name }}
+    <div class="text-center">
+                    <h1>{{ category.name }}</h1>
+    </div>
 <div class="section">
         <div class="container">
             <div class="row">
@@ -24,13 +26,13 @@
                                         </a>
                                     </div>
                                     <div>
+                                         {{ produc.short_description }}
+                                    </div>
+                                    <div>
+
                                         {{ produc.price }} USD
                                     </div>
-                                    <div class="add-to-cart-btn">
-                                        <button class="btn btn-success">
-                                            Добавить в корзину
-                                        </button>
-                                    </div>
+
                         </div>
                      </div>
                 {% endfor %}
