@@ -38,7 +38,7 @@ $(document).ready(function () {
             // }
              ,
              error: function(){
-                 console.log("error")
+                 console.log("error");
              }
          })
     }
@@ -72,5 +72,9 @@ $(document).ready(function () {
          product_id=$(this).data("product_id");
          nmb=0;
          basket_Updating(product_id,nmb,is_delete=true);
-     })
+     });
+
+
+
+
 });

@@ -42,4 +42,10 @@ def basket_adding(request):
 def checkout(request):
     session_key = request.session.session_key
     products_in_basket=ProductInBasket.objects.filter(session_key=session_key,is_active_basket=True)
+    total_price=0
+    for product_in_basket in products_in_basket:
+        total_price += product_in_basket.Full_price
+
+    if request.POST:
+        print(request.POST)
     return  render(request,'checkout.html',locals())
