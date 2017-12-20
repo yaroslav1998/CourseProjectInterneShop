@@ -5,13 +5,13 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
 class Order(models.Model):
-    adress = models.TextField()
+    adress = models.TextField(default="123")
     phone = models.CharField(max_length=1024)
-    date = models.DateTimeField(auto_now_add=True,auto_now=False)
+    date = models.DateTimeField(auto_now_add=True,auto_now=False,null=True)
     status = models.ForeignKey('Status',models.DO_NOTHING,db_column='status')
     uid = models.ForeignKey(User, models.DO_NOTHING, db_column='uid')
     full_price=models.DecimalField(max_digits=65,decimal_places=2,default=0)
-    is_active=models.BooleanField()
+    is_active=models.BooleanField(default=True)
 
     class Meta:
         managed = False
@@ -26,7 +26,7 @@ class OrderItem(models.Model):
     price_per_item=models.DecimalField(max_digits=65,decimal_places=2,default=0)
     count = models.IntegerField(default=1)
     Full_price=models.DecimalField(max_digits=65,decimal_places=2,default=0)
-    is_active=models.BooleanField()
+    is_active=models.BooleanField(default=True)
     class Meta:
         managed = False
         db_table = 'order_item'

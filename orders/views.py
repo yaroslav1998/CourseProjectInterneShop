@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from .models import *
 from product.models import *
 from .forms import CheckoutContactForm
+from django.contrib.auth.models import User
 
 def basket_adding(request):
     return_dict=dict()
@@ -48,8 +49,27 @@ def checkout(request):
 
     form=CheckoutContactForm(request.POST or None)
     if request.POST:
+        print(request.POST)
         if form.is_valid():
             print("yes")
+            data=request.POST
+            name=data.get("name","1231")
+            phone=data["phone"]
+            adress=data["adress"]
+            email=data["email"]
+            user,created=User.objects.get_or_create(username=phone,email=email,defaults={"first_name":name})
+            status_id = Status.objects.only('id').get(id=1)
+            order= Order.objects.create(uid=user,phone=phone,adress=adress,status= status_id)
+            for name,value in data.items():
+                if name.startswith("product_in_basket_"):
+                    products_in_basket_id=name.split("product_in_basket_")[1]
+                    product_in_basket=ProductInBasket.objects.get(id=products_in_basket_id)
+                    OrderItem.objects.create(order=order,pid=product_in_basket.product_id,
+                                             price_per_item=product_in_basket.price_per_item,count=product_in_basket.count,
+                                             Full_price=product_in_basket.Full_price)
+                    print(id)
+
+
         else:
             print("no")
     return  render(request,'checkout.html',locals())
