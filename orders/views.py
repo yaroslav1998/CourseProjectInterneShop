@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import *
 from product.models import *
-from django.shortcuts import get_object_or_404
+from .forms import CheckoutContactForm
 
 def basket_adding(request):
     return_dict=dict()
@@ -46,6 +46,10 @@ def checkout(request):
     for product_in_basket in products_in_basket:
         total_price += product_in_basket.Full_price
 
+    form=CheckoutContactForm(request.POST or None)
     if request.POST:
-        print(request.POST)
+        if form.is_valid():
+            print("yes")
+        else:
+            print("no")
     return  render(request,'checkout.html',locals())
